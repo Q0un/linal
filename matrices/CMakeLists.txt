@@ -1,0 +1,1 @@
+add_executable(matrices main.cpp matrix.cpp matrix.h fraction.cpp fraction.h matrix_row.cpp matrix_row.h gauss.cpp gauss.h)
