@@ -8,7 +8,7 @@
 class Matrix {
 public:
     Matrix() = default;
-    Matrix(size_t h, size_t w = 0);
+    Matrix(size_t h, size_t w = 0, int64_t val = 0);
     Matrix(const std::vector<MatrixRow>& data);
     Matrix(std::vector<MatrixRow>&& data);
     Matrix(std::initializer_list<MatrixRow> data);
@@ -21,6 +21,8 @@ public:
 
     Matrix operator*(const Matrix& other) const;
     Matrix& operator*=(const Matrix& other);
+
+    bool operator==(const Matrix& other) const;
 
     size_t GetHeight() const;
     size_t GetWidth() const;

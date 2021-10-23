@@ -36,6 +36,8 @@ public:
     MatrixRow operator|(const MatrixRow& other) const;
     MatrixRow& operator|=(const MatrixRow& other);
 
+    bool operator==(const MatrixRow& other) const;
+
     std::vector<Fraction>::iterator begin();
     std::vector<Fraction>::const_iterator begin() const;
     std::vector<Fraction>::iterator end();

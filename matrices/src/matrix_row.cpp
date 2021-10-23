@@ -111,6 +111,10 @@ MatrixRow& MatrixRow::operator|=(const MatrixRow& other) {
     return *this;
 }
 
+bool MatrixRow::operator==(const MatrixRow& other) const {
+    return data_ == other.data_;
+}
+
 std::vector<Fraction>::iterator MatrixRow::begin() {
     return data_.begin();
 }

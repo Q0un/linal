@@ -18,4 +18,5 @@ int main() {
                 {0},
                 {0}};
     std::cout << Gauss::MakeTriangle((a * b) | c) << std::endl;
+    return 0;
 }

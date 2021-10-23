@@ -1,6 +1,11 @@
 #include "matrix.h"
 
-Matrix::Matrix(size_t h, size_t w) : data_(h, MatrixRow(w)) {
+Matrix::Matrix(size_t h, size_t w, int64_t val) : data_(h, MatrixRow(w)) {
+    if (h == w) {
+        for (size_t i = 0; i < h; ++i) {
+            data_[i] = val;
+        }
+    }
 }
 
 Matrix::Matrix(const std::vector<MatrixRow>& data) : data_(data) {
@@ -60,6 +65,10 @@ Matrix Matrix::operator*(const Matrix& other) const {
 
 Matrix& Matrix::operator*=(const Matrix& other) {
     return (*this) = operator*(other);
+}
+
+bool Matrix::operator==(const Matrix& other) const {
+    return data_ == other.data_;
 }
 
 size_t Matrix::GetHeight() const {
