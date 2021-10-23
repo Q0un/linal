@@ -11,6 +11,7 @@ public:
     MatrixRow(size_t size);
     MatrixRow(const std::vector<Fraction>& data);
     MatrixRow(std::vector<Fraction>&& data);
+    MatrixRow(std::initializer_list<Fraction> data);
 
     size_t GetSize() const;
 
@@ -33,7 +34,7 @@ public:
     MatrixRow& operator/=(const Fraction& val);
 
     MatrixRow operator|(const MatrixRow& other) const;
-    MatrixRow operator|=(const MatrixRow& other);
+    MatrixRow& operator|=(const MatrixRow& other);
 
     std::vector<Fraction>::iterator begin();
     std::vector<Fraction>::const_iterator begin() const;

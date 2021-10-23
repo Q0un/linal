@@ -11,6 +11,9 @@ MatrixRow::MatrixRow(const std::vector<Fraction>& data) : data_(data) {
 MatrixRow::MatrixRow(std::vector<Fraction>&& data) : data_(std::move(data)) {
 }
 
+MatrixRow::MatrixRow(std::initializer_list<Fraction> data) : data_(data) {
+}
+
 size_t MatrixRow::GetSize() const {
     return data_.size();
 }
@@ -103,8 +106,9 @@ MatrixRow MatrixRow::operator|(const MatrixRow& other) const {
     return result;
 }
 
-MatrixRow MatrixRow::operator|=(const MatrixRow& other) {
+MatrixRow& MatrixRow::operator|=(const MatrixRow& other) {
     std::copy(other.begin(), other.end(), std::back_inserter(data_));
+    return *this;
 }
 
 std::vector<Fraction>::iterator MatrixRow::begin() {
@@ -125,7 +129,7 @@ std::vector<Fraction>::const_iterator MatrixRow::end() const {
 
 std::ostream& operator<<(std::ostream& stream, const MatrixRow& row) {
     for (size_t i = 0; i < row.GetSize() - 1; ++i) {
-        stream << row[i] << ' ';
+        stream << row[i] << '\t';
     }
     stream << row[row.GetSize() - 1];
     return stream;

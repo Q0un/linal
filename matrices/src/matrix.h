@@ -11,12 +11,16 @@ public:
     Matrix(size_t h, size_t w = 0);
     Matrix(const std::vector<MatrixRow>& data);
     Matrix(std::vector<MatrixRow>&& data);
+    Matrix(std::initializer_list<MatrixRow> data);
 
     MatrixRow& operator[](size_t ind);
     const MatrixRow& operator[](size_t ind) const;
 
     Matrix operator|(const Matrix& other) const;
     Matrix& operator|=(const Matrix& other);
+
+    Matrix operator*(const Matrix& other) const;
+    Matrix& operator*=(const Matrix& other);
 
     size_t GetHeight() const;
     size_t GetWidth() const;

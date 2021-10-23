@@ -9,6 +9,9 @@ Matrix::Matrix(const std::vector<MatrixRow>& data) : data_(data) {
 Matrix::Matrix(std::vector<MatrixRow>&& data) : data_(std::move(data)) {
 }
 
+Matrix::Matrix(std::initializer_list<MatrixRow> data) : data_(data) {
+}
+
 MatrixRow& Matrix::operator[](size_t ind) {
     return data_[ind];
 }
@@ -36,6 +39,27 @@ Matrix& Matrix::operator|=(const Matrix& other) {
         operator[](i) |= other[i];
     }
     return *this;
+}
+
+Matrix Matrix::operator*(const Matrix& other) const {
+    if (GetWidth() != other.GetHeight()) {
+        throw std::runtime_error("Wrong sizes");
+    }
+    size_t height = GetHeight();
+    size_t width = other.GetWidth();
+    Matrix result(height, width);
+    for (size_t i = 0; i < height; ++i) {
+        for (size_t j = 0; j < width; ++j) {
+            for (size_t k = 0; k < GetWidth(); ++k) {
+                result[i][j] += operator[](i)[k] * other[k][j];
+            }
+        }
+    }
+    return result;
+}
+
+Matrix& Matrix::operator*=(const Matrix& other) {
+    return (*this) = operator*(other);
 }
 
 size_t Matrix::GetHeight() const {
