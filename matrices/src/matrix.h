@@ -33,3 +33,5 @@ public:
 private:
     std::vector<MatrixRow> data_;
 };
+
+Matrix Pow(const Matrix& a, size_t p);

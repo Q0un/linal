@@ -3,7 +3,7 @@
 Matrix::Matrix(size_t h, size_t w, int64_t val) : data_(h, MatrixRow(w)) {
     if (h == w) {
         for (size_t i = 0; i < h; ++i) {
-            data_[i] = val;
+            data_[i][i] = val;
         }
     }
 }
@@ -92,4 +92,14 @@ std::ostream& operator<<(std::ostream& stream, const Matrix& matrix) {
     }
     stream << matrix[matrix.GetHeight() - 1];
     return stream;
+}
+
+Matrix Pow(const Matrix& a, size_t p) {
+    if (p == 1) {
+        return a;
+    }
+    if (p & 1) {
+        return a * Pow(a, p - 1);
+    }
+    return Pow(a * a, p >> 1);
 }
