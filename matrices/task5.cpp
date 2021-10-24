@@ -41,6 +41,6 @@ int main() {
         return 0;
     }
     std::cout << b << std::endl << "================" << std::endl << c << std::endl << "================" << std::endl;
-    std::cout << Pow(c * b, 1) << std::endl << "================" << std::endl << Pow(c * b, 2) << std::endl;
+    std::cout << c * b << std::endl;
     return 0;
 }
