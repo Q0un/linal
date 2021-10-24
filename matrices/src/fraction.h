@@ -2,6 +2,7 @@
 
 #include <cstdint>
 #include <iostream>
+#include <string>
 
 class Fraction {
 public:
@@ -53,6 +54,8 @@ public:
     friend bool operator>=(int64_t a, const Fraction& b);
 
     Fraction GetAbs() const;
+    std::string ToString() const;
+    size_t GetLen() const;
 
 private:
     int64_t num_;

@@ -1,8 +1,12 @@
 #include "fraction.h"
 
 #include <numeric>
+#include <stdexcept>
 
 Fraction::Fraction(int64_t n, int64_t m) {
+    if (m == 0) {
+        throw std::runtime_error("Division by zero");
+    }
     num_ = n;
     denom_ = m;
     Normalize();
@@ -96,10 +100,7 @@ Fraction& Fraction::operator/=(int64_t other) {
 }
 
 std::ostream& operator<<(std::ostream& stream, const Fraction& fraction) {
-    if (fraction.denom_ == 1) {
-        return stream << fraction.num_;
-    }
-    return stream << fraction.num_ << '/' << fraction.denom_;
+    return stream << fraction.ToString();
 }
 
 bool Fraction::operator<(const Fraction& other) const {
@@ -181,6 +182,19 @@ Fraction Fraction::GetAbs() const {
     } else {
         return *this;
     }
+}
+
+std::string Fraction::ToString() const {
+    std::string result;
+    result += std::to_string(num_);
+    if (denom_ != 1) {
+        result += "/" + std::to_string(denom_);
+    }
+    return result;
+}
+
+size_t Fraction::GetLen() const {
+    return ToString().size();
 }
 
 void Fraction::Normalize() {

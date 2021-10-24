@@ -43,8 +43,6 @@ public:
     std::vector<Fraction>::iterator end();
     std::vector<Fraction>::const_iterator end() const;
 
-    friend std::ostream& operator<<(std::ostream& stream, const MatrixRow& row);
-
 private:
     std::vector<Fraction> data_;
 };

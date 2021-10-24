@@ -130,11 +130,3 @@ std::vector<Fraction>::iterator MatrixRow::end() {
 std::vector<Fraction>::const_iterator MatrixRow::end() const {
     return data_.end();
 }
-
-std::ostream& operator<<(std::ostream& stream, const MatrixRow& row) {
-    for (size_t i = 0; i < row.GetSize() - 1; ++i) {
-        stream << row[i] << '\t';
-    }
-    stream << row[row.GetSize() - 1];
-    return stream;
-}

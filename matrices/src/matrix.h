@@ -32,6 +32,8 @@ public:
 
 protected:
     std::vector<MatrixRow> data_;
+
+    size_t GetMaxLenOfElement() const;
 };
 
 Matrix Pow(const Matrix& a, size_t p);

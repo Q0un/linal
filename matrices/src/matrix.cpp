@@ -1,5 +1,8 @@
 #include "matrix.h"
 
+#include <algorithm>
+#include <iomanip>
+
 Matrix::Matrix(size_t h, size_t w, int64_t val) : data_(h, MatrixRow(w)) {
     if (h == w) {
         for (size_t i = 0; i < h; ++i) {
@@ -87,11 +90,29 @@ std::ostream& operator<<(std::ostream& stream, const Matrix& matrix) {
     if (matrix.IsEmpty()) {
         return stream;
     }
-    for (size_t i = 0; i < matrix.GetHeight() - 1; ++i) {
-        stream << matrix[i] << std::endl;
+    size_t width = matrix.GetMaxLenOfElement();
+    for (size_t i = 0; i < matrix.GetHeight(); ++i) {
+        for (size_t j = 0; j < matrix.GetWidth(); ++j) {
+            stream << matrix[i][j];
+            if (j + 1 < matrix.GetWidth()) {
+                stream << "  " << std::setw(width);
+            }
+        }
+        if (i + 1 < matrix.GetHeight()) {
+            stream << std::endl;
+        }
     }
-    stream << matrix[matrix.GetHeight() - 1];
     return stream;
+}
+
+size_t Matrix::GetMaxLenOfElement() const {
+    size_t result = 0;
+    for (const auto& i : data_) {
+        for (const auto& el : i) {
+            result = std::max(result, el.GetLen());
+        }
+    }
+    return result;
 }
 
 Matrix Pow(const Matrix& a, size_t p) {
