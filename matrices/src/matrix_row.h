@@ -33,6 +33,10 @@ public:
     MatrixRow& operator*=(const Fraction& val);
     MatrixRow& operator/=(const Fraction& val);
 
+    friend MatrixRow operator+(const Fraction& val, const MatrixRow& row);
+    friend MatrixRow operator-(const Fraction& val, const MatrixRow& row);
+    friend MatrixRow operator*(const Fraction& val, const MatrixRow& row);
+
     MatrixRow operator|(const MatrixRow& other) const;
     MatrixRow& operator|=(const MatrixRow& other);
 

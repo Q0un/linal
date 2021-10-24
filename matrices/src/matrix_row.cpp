@@ -1,6 +1,7 @@
 #include "matrix_row.h"
 
 #include <stdexcept>
+#include <algorithm>
 
 MatrixRow::MatrixRow(size_t size) : data_(size) {
 }
@@ -97,6 +98,18 @@ MatrixRow& MatrixRow::operator*=(const Fraction& val) {
 MatrixRow& MatrixRow::operator/=(const Fraction& val) {
     std::transform(begin(), end(), begin(), [&val](const Fraction& x) { return x / val; });
     return *this;
+}
+
+MatrixRow operator+(const Fraction& val, const MatrixRow& row) {
+    return row + val;
+}
+
+MatrixRow operator-(const Fraction& val, const MatrixRow& row) {
+    return -(row - val);
+}
+
+MatrixRow operator*(const Fraction& val, const MatrixRow& row) {
+    return row * val;
 }
 
 MatrixRow MatrixRow::operator|(const MatrixRow& other) const {
