@@ -25,12 +25,12 @@ public:
     bool operator==(const Matrix& other) const;
 
     size_t GetHeight() const;
-    size_t GetWidth() const;
+    virtual size_t GetWidth() const;
     bool IsEmpty() const;
 
     friend std::ostream& operator<<(std::ostream& stream, const Matrix& matrix);
 
-private:
+protected:
     std::vector<MatrixRow> data_;
 };
 

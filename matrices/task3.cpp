@@ -2,9 +2,12 @@
 
 #include "matrix.h"
 #include "gauss.h"
+#include "extended_matrix.h"
 
 int main() {
-    std::cout << Gauss::MakeTriangle({{9, -7, 7},
-                                      {4, -6, 9}}) << std::endl << "=========" << std::endl;
+    Matrix a = {{9, -7, 7},
+                {4, -6, 9}};
+    Gauss::MakeTriangle(a);
+    std::cout << a << std::endl << "=========" << std::endl;
     return 0;
 }

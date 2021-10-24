@@ -12,11 +12,8 @@ int main() {
     Matrix b = {{-1, 0, 0, 1},
                 {2, 0, 1, 0},
                 {1, 1, 0, 0}};
-    Matrix c = {{0},
-                {0},
-                {0},
-                {0},
-                {0}};
-    std::cout << Gauss::MakeTriangle((a * b) | c) << std::endl;
+    ExtendedMatrix ab = a * b;
+    Gauss::MakeTriangle(ab);
+    std::cout << ab << std::endl;
     return 0;
 }
