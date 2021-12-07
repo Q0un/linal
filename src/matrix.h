@@ -38,6 +38,8 @@ public:
     friend Matrix operator-(const Fraction& val, const Matrix& a);
     friend Matrix operator*(const Fraction& val, const Matrix& a);
 
+    Matrix operator~() const;
+
     bool operator==(const Matrix& other) const;
 
     size_t GetHeight() const;

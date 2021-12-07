@@ -149,6 +149,10 @@ Matrix operator*(const Fraction& val, const Matrix& a) {
     return a * val;
 }
 
+Matrix Matrix::operator~() const {
+
+}
+
 bool Matrix::operator==(const Matrix& other) const {
     return data_ == other.data_;
 }
@@ -218,4 +222,8 @@ Matrix Pow(const Matrix& a, size_t p) {
         return a * Pow(a, p - 1);
     }
     return Pow(a * a, p >> 1);
+}
+
+Matrix Det(const Matrix& a) {
+
 }

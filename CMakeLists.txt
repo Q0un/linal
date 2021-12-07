@@ -3,4 +3,4 @@ project(linal)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_subdirectory(matrices)
+add_subdirectory(IDZ1)
