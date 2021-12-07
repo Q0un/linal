@@ -16,10 +16,11 @@ Fraction Det(const Matrix& a) {
     if (a.IsEmpty() || a.GetWidth() != a.GetHeight()) {
         throw std::runtime_error("Wrong sizes");
     }
-    Gauss::MakeTriangle(a);
+    Matrix b = a;
+    Gauss::MakeTriangle(b);
     Fraction res = 1;
-    for (size_t i = 0; i < a.GetHeight(); ++i) {
-        res *= a[i][i];
+    for (size_t i = 0; i < b.GetHeight(); ++i) {
+        res *= b[i][i];
     }
     return res;
 }
@@ -37,9 +38,9 @@ Matrix Inverse(const Matrix& a) {
     }
     ExtendedMatrix b(a, e);
     Gauss::MakeTriangle(b);
-    for (size_t i = b.GetWidth() - 1; i >= 0; --i) {
+    for (int32_t i = b.GetHeight() - 1; i != -1; --i) {
         for (size_t j = 0; j < i; ++j) {
-            b[j] -= a[i] * b[j][i];
+            b[j] -= b[i] * b[j][i];
         }
     }
     return b.GetRight();
