@@ -1,6 +1,7 @@
 #pragma once
 #include "matrix.h"
 #include "gauss.h"
+#include "poly.h"
 
 Matrix Pow(const Matrix& a, size_t p) {
     if (p == 1) {
@@ -44,4 +45,44 @@ Matrix Inverse(const Matrix& a) {
         }
     }
     return b.GetRight();
+}
+
+Poly GetCharPoly(const Matrix& a) {
+    if (a.IsEmpty() || a.GetHeight() != a.GetWidth()) {
+        throw std::runtime_error("wrong sizes");
+    }
+    std::vector<std::vector<Poly>> b(a.GetHeight(), std::vector<Poly>(a.GetWidth()));
+    for (size_t i = 0; i < a.GetHeight(); ++i) {
+        for (size_t j = 0; j < a.GetWidth(); ++j) {
+            if (i == j) {
+                b[i][j] = {a[i][j], -1};
+            } else {
+                b[i][j] = {a[i][j]};
+            }
+        }
+    }
+    std::vector<size_t> perm(b.size());
+    for (size_t i = 0; i < perm.size(); ++i) {
+        perm[i] = i;
+    }
+    Poly det;
+    do {
+        Poly k = {1};
+        for (size_t i = 0; i < b.size(); ++i) {
+            k *= b[i][perm[i]];
+        }
+        size_t x = 0;
+        for (size_t i = 0; i < b.size(); ++i) {
+            for (size_t j = 0; j < i; ++j) {
+                if (perm[j] > perm[i]) {
+                    ++x;
+                }
+            }
+        }
+        if (x & 1) {
+            k *= Fraction(-1);
+        }
+        det += k;
+    } while (std::next_permutation(perm.begin(), perm.end()));
+    return det;
 }
