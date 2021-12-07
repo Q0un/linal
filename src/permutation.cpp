@@ -32,6 +32,7 @@ Fraction Permutation::operator[](size_t i) const {
             return j + 1;
         }
     }
+    throw std::runtime_error("not permutation");
 }
 
 Permutation Permutation::operator*(const Permutation &other) const {
