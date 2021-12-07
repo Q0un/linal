@@ -2,7 +2,6 @@
 
 #include "matrix.h"
 #include "gauss.h"
-#include "extended_matrix.h"
 
 int main() {
     Matrix a = {{9, -7, 7},

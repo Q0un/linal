@@ -28,7 +28,7 @@ void Gauss::MakeTriangle(Matrix& a) {
 }
 
 std::pair<Matrix, int16_t> Gauss::SolveSOLE(const Matrix &a, const Matrix &b) {
-    return SolveSOLE(ExtendedMatrix(a, b));
+    return Gauss::SolveSOLE(ExtendedMatrix(a, b));
 }
 
 std::pair<Matrix, int16_t> Gauss::SolveSOLE(const ExtendedMatrix& a) {

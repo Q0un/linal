@@ -149,10 +149,6 @@ Matrix operator*(const Fraction& val, const Matrix& a) {
     return a * val;
 }
 
-Matrix Matrix::operator~() const {
-
-}
-
 bool Matrix::operator==(const Matrix& other) const {
     return data_ == other.data_;
 }
@@ -212,18 +208,4 @@ size_t Matrix::GetMaxLenOfElement() const {
         }
     }
     return result;
-}
-
-Matrix Pow(const Matrix& a, size_t p) {
-    if (p == 1) {
-        return a;
-    }
-    if (p & 1) {
-        return a * Pow(a, p - 1);
-    }
-    return Pow(a * a, p >> 1);
-}
-
-Matrix Det(const Matrix& a) {
-
 }

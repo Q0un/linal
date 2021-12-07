@@ -12,6 +12,13 @@ public:
     ExtendedMatrix(ExtendedMatrix&& a) = default;
 
     size_t GetWidth() const override;
+    size_t GetWholeWidth() const;
+
+    Matrix GetLeft() const;
+    Matrix GetRight() const;
 
     friend std::ostream& operator<<(std::ostream& stream, const ExtendedMatrix& matrix);
+
+private:
+    size_t leftWidth_;
 };

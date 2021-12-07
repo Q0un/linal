@@ -7,6 +7,3 @@ class Permutation : public Matrix {
     Permutation(std::vector<uint32_t>&& data);
     Permutation(std::initializer_list<uint32_t> data);
 };
-
-
-#endif //LINAL_PERMUTATION_H
