@@ -41,7 +41,12 @@ Permutation Permutation::operator*(const Permutation &other) const {
 
 std::ostream& operator<<(std::ostream& stream, const Permutation& perm) {
     for (size_t i = 0; i < perm.Size(); ++i) {
-        stream << i;
+        for (size_t j = 0; j < perm.Size(); ++j) {
+            if (perm.matrix_[i][j] == 1) {
+                stream << j + 1;
+                break;
+            }
+        }
         if (i + 1 < perm.Size()) {
             stream << ' ';
         }
