@@ -39,6 +39,10 @@ Permutation Permutation::operator*(const Permutation &other) const {
     return Permutation(matrix_ * other.matrix_);
 }
 
+bool Permutation::operator==(const Permutation& other) const {
+    return matrix_ == other.matrix_;
+}
+
 std::ostream& operator<<(std::ostream& stream, const Permutation& perm) {
     for (size_t i = 0; i < perm.Size(); ++i) {
         for (size_t j = 0; j < perm.Size(); ++j) {

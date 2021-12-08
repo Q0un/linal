@@ -19,6 +19,8 @@ public:
 
     Permutation operator*(const Permutation& other) const;
 
+    bool operator==(const Permutation& other) const;
+
     friend std::ostream& operator<<(std::ostream& stream, const Permutation& perm);
 
     const Matrix& GetMatrix() const;
