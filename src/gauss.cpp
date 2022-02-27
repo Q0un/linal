@@ -58,30 +58,30 @@ std::pair<Matrix, int16_t> SolveSOLE(const ExtendedMatrix& a) {
     std::vector<size_t> not_zero(height);
     for (size_t i = 0; i < height; ++i) {
         size_t j = 0;
-        while (j < width - 1 && triangle[i][j] == 0) {
+        while (j < width && triangle[i][j] == 0) {
             ++j;
         }
         not_zero[i] = j;
     }
-    Matrix result(width - 1, 1);
+    Matrix result(width, 1);
     size_t cnt_mains = 0;
     for (size_t i = 0; i < height; ++i) {
-        if (not_zero[i] < width - 1) {
+        if (not_zero[i] < width) {
             ++cnt_mains;
         }
     }
-    bool is_inf = cnt_mains < width - 1;
+    bool is_inf = cnt_mains < width;
     for (size_t i = height; i-- > 0;) {
-        if (not_zero[i] == width - 1) {
-            if (triangle[i][width - 1] != 0) {
+        if (not_zero[i] == width) {
+            if (triangle[i][width] != 0) {
                 return {Matrix(), 0};
             }
         } else {
             Fraction sum;
-            for (size_t j = not_zero[i] + 1; j < width - 1; ++j) {
+            for (size_t j = not_zero[i] + 1; j < width; ++j) {
                 sum += triangle[i][j] * result[j][0];
             }
-            result[not_zero[i]][0] = triangle[i][width - 1] - sum;
+            result[not_zero[i]][0] = triangle[i][width] - sum;
         }
     }
     if (is_inf) {
