@@ -44,6 +44,10 @@ public:
     virtual size_t GetWidth() const;
     bool IsEmpty() const;
 
+    Matrix Transpose() const;
+
+    Matrix operator()(const Matrix& v) const;
+
     friend std::ostream& operator<<(std::ostream& stream, const Matrix& matrix);
 
     std::vector<MatrixRow>::iterator begin();

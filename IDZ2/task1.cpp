@@ -1,5 +1,4 @@
 #include <iostream>
-#include <algorithm>
 
 #include "permutation.h"
 #include "permutation_utils.h"
@@ -15,6 +14,6 @@ int main() {
         if (x * c * x == d) {
             std::cout << x << std::endl;
         }
-    } while (std::next_permutation(perm.begin(), perm.end()));
+    } while (NextPermutation(perm.begin(), perm.end()));
     return 0;
 }

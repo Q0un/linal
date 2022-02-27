@@ -165,6 +165,21 @@ bool Matrix::IsEmpty() const {
     return data_.empty();
 }
 
+Matrix Matrix::Transpose() const {
+    Matrix res(GetWidth(), GetHeight());
+    for (int i = 0; i < GetHeight(); ++i) {
+        for (int j = 0; j < GetWidth(); ++j) {
+            res[j][i] = data_[i][j];
+        }
+    }
+    return res;
+}
+
+Matrix Matrix::operator()(const Matrix& v) const {
+    auto vt = v.Transpose();
+    return operator*(vt);
+}
+
 std::ostream& operator<<(std::ostream& stream, const Matrix& matrix) {
     if (matrix.IsEmpty()) {
         return stream;

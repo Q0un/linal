@@ -1,4 +1,7 @@
+#include <iostream>
+
 #include "poly.h"
+#include "permutation_utils.h"
 
 int main() {
     Poly x = {0, 1};
@@ -29,7 +32,7 @@ int main() {
             k *= Fraction(-1);
         }
         det += k;
-    } while (std::next_permutation(perm.begin(), perm.end()));
+    } while (NextPermutation(perm.begin(), perm.end()));
     std::cout << det << std::endl;
     return 0;
 }

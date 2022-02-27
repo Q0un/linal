@@ -2,6 +2,7 @@
 #include "matrix.h"
 #include "gauss.h"
 #include "poly.h"
+#include "permutation_utils.h"
 
 Matrix Pow(const Matrix& a, size_t p) {
     if (p == 1) {
@@ -83,6 +84,6 @@ Poly GetCharPoly(const Matrix& a) {
             k *= Fraction(-1);
         }
         det += k;
-    } while (std::next_permutation(perm.begin(), perm.end()));
+    } while (NextPermutation(perm.begin(), perm.end()));
     return det;
 }
