@@ -11,7 +11,7 @@ int main() {
     Matrix v2 = {{3, 1, -8, -1, 3, 2}};
     std::cout << A(v1) << std::endl << "=============\n";
     std::cout << A(v2) << std::endl << "=============\n";
-    Gauss::MakeTriangle(A);
+    MakeTriangle(A);
     std::cout << A << std::endl << "=============\n";
     Matrix V(6);
     V[0] = v1[0];
@@ -21,7 +21,7 @@ int main() {
     V[4] = {-1, 0, -2, 1, 0, 0};
     V[5] = {7, 1, 0, 0, 0, 0};
     V = V.Transpose();
-    Gauss::MakeTriangle(V);
+    MakeTriangle(V);
     std::cout << V << std::endl;
     return 0;
 }

@@ -5,3 +5,4 @@ file(GLOB SRC CONFIGURE_DEPENDS "../src/*.h" "../src/*.cpp")
 set(CMAKE_CXX_STANDARD 20)
 
 add_executable(IDZ3_task1 task1.cpp ${SRC})
+add_executable(IDZ3_task2 task2.cpp ${SRC})

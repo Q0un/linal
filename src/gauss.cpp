@@ -1,6 +1,6 @@
 #include "gauss.h"
 
-void Gauss::MakeTriangle(Matrix& a) {
+void MakeTriangle(Matrix& a) {
     size_t height = a.GetHeight();
     size_t width = a.GetWidth();
     size_t col = 0;
@@ -27,11 +27,11 @@ void Gauss::MakeTriangle(Matrix& a) {
     }
 }
 
-std::pair<Matrix, int16_t> Gauss::SolveSOLE(const Matrix &a, const Matrix &b) {
-    return Gauss::SolveSOLE(ExtendedMatrix(a, b));
+std::pair<Matrix, int16_t> SolveSOLE(const Matrix &a, const Matrix &b) {
+    return SolveSOLE(ExtendedMatrix(a, b));
 }
 
-std::pair<Matrix, int16_t> Gauss::SolveSOLE(const ExtendedMatrix& a) {
+std::pair<Matrix, int16_t> SolveSOLE(const ExtendedMatrix& a) {
     if (a.IsEmpty()) {
         throw std::runtime_error("Wrong sizes");
     }

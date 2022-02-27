@@ -13,7 +13,7 @@ int main() {
                 {2, 0, 1, 0},
                 {1, 1, 0, 0}};
     ExtendedMatrix ab = a * b;
-    Gauss::MakeTriangle(ab);
+    MakeTriangle(ab);
     std::cout << ab << std::endl;
     return 0;
 }

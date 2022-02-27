@@ -19,7 +19,7 @@ Fraction Det(const Matrix& a) {
         throw std::runtime_error("Wrong sizes");
     }
     Matrix b = a;
-    Gauss::MakeTriangle(b);
+    MakeTriangle(b);
     Fraction res = 1;
     for (size_t i = 0; i < b.GetHeight(); ++i) {
         res *= b[i][i];
@@ -39,7 +39,7 @@ Matrix Inverse(const Matrix& a) {
         e[i][i] = 1;
     }
     ExtendedMatrix b(a, e);
-    Gauss::MakeTriangle(b);
+    MakeTriangle(b);
     for (int32_t i = b.GetHeight() - 1; i != -1; --i) {
         for (size_t j = 0; j < i; ++j) {
             b[j] -= b[i] * b[j][i];
