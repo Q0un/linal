@@ -27,6 +27,22 @@ void MakeTriangle(Matrix& a) {
     }
 }
 
+void MakeSuperTriangle(Matrix& a) {
+    MakeTriangle(a);
+    for (size_t i = 0; i < a.GetHeight(); ++i) {
+        int j = 0;
+        while (j < a.GetWidth() && a[i][j] == 0) {
+            ++j;
+        }
+        if (j == a.GetWidth()) {
+            break;
+        }
+        for (int k = i - 1; k >= 0; --k) {
+            a[k] -= a[i] * a[k][j];
+        }
+    }
+}
+
 std::pair<Matrix, int16_t> SolveSOLE(const Matrix &a, const Matrix &b) {
     return SolveSOLE(ExtendedMatrix(a, b));
 }

@@ -6,7 +6,7 @@
 #include "matrix.h"
 #include "extended_matrix.h"
 
-static void MakeTriangle(Matrix& a);
-static void MakeSuperTriangle(Matrix& a);
-static std::pair<Matrix, int16_t> SolveSOLE(const Matrix &a, const Matrix& b);
-static std::pair<Matrix, int16_t> SolveSOLE(const ExtendedMatrix& a);
+void MakeTriangle(Matrix& a);
+void MakeSuperTriangle(Matrix& a);
+std::pair<Matrix, int16_t> SolveSOLE(const Matrix &a, const Matrix& b);
+std::pair<Matrix, int16_t> SolveSOLE(const ExtendedMatrix& a);
