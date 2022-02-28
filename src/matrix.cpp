@@ -165,7 +165,7 @@ bool Matrix::IsEmpty() const {
     return data_.empty();
 }
 
-Matrix Matrix::Transpose() const {
+Matrix Matrix::T() const {
     Matrix res(GetWidth(), GetHeight());
     for (int i = 0; i < GetHeight(); ++i) {
         for (int j = 0; j < GetWidth(); ++j) {
@@ -176,7 +176,7 @@ Matrix Matrix::Transpose() const {
 }
 
 Matrix Matrix::operator()(const Matrix& v) const {
-    auto vt = v.Transpose();
+    auto vt = v.T();
     return operator*(vt);
 }
 
@@ -213,6 +213,14 @@ std::vector<MatrixRow>::iterator Matrix::end() {
 
 std::vector<MatrixRow>::const_iterator Matrix::end() const {
     return data_.end();
+}
+
+Matrix Matrix::E(size_t n) {
+    Matrix e(n, n);
+    for (size_t i = 0; i < n; ++i) {
+        e[i][i] = 1;
+    }
+    return e;
 }
 
 size_t Matrix::GetMaxLenOfElement() const {

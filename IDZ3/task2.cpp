@@ -8,7 +8,7 @@ int main() {
                 {18,  -12, -2, 2},
                 {5,   -4,  -1, 3},
                 {-16, 11,  2,  -3}};
-    Matrix B = A.Transpose();
+    Matrix B = A.T();
     MakeSuperTriangle(B);
     std::cout << B << std::endl << "=======================\n";
     Matrix C(6);
@@ -25,14 +25,14 @@ int main() {
     MakeSuperTriangle(B);
     std::cout << B << std::endl << "=======================\n";
     Matrix D(6);
-    A = A.Transpose();
+    A = A.T();
     D[0] = A[0];
     D[1] = A[1];
     D[2] = A[2];
     D[3] = A[3];
     D[4] = {7, 11, 0, 3};
     D[5] = {-1, -2, 3, 0};
-    D = D.Transpose();
+    D = D.T();
     MakeSuperTriangle(D);
     std::cout << D << std::endl;
     return 0;

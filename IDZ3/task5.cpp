@@ -35,9 +35,9 @@ int main() {
                       {5},
                       {1}};
     Matrix A(3);
-    A[0] = SolveSOLE(Aleft, Aright1).first.Transpose()[0];
-    A[1] = SolveSOLE(Aleft, Aright2).first.Transpose()[0];
-    A[2] = SolveSOLE(Aleft, Aright3).first.Transpose()[0];
+    A[0] = SolveSOLE(Aleft, Aright1).first.T()[0];
+    A[1] = SolveSOLE(Aleft, Aright2).first.T()[0];
+    A[2] = SolveSOLE(Aleft, Aright3).first.T()[0];
     std::cout << A << std::endl;
     return 0;
 }

@@ -44,7 +44,7 @@ public:
     virtual size_t GetWidth() const;
     bool IsEmpty() const;
 
-    Matrix Transpose() const;
+    Matrix T() const;
 
     Matrix operator()(const Matrix& v) const;
 
@@ -54,6 +54,8 @@ public:
     std::vector<MatrixRow>::const_iterator begin() const;
     std::vector<MatrixRow>::iterator end();
     std::vector<MatrixRow>::const_iterator end() const;
+
+    static Matrix E(size_t n);
 
 protected:
     std::vector<MatrixRow> data_;

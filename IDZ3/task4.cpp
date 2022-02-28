@@ -10,6 +10,12 @@ int main() {
                 {-1, -1, -1, 0},
                 {-5, 5,  -3, 6}};
     Poly ch = GetCharPoly(A);
-    std::cout << ch << std::endl;
+    std::cout << ch << std::endl << "======================\n";
+
+    Matrix V1 = Pow(A + Matrix::E(4), 2), V2 = Pow(A, 2);
+    std::cout << V2 << std::endl << "======================\n";
+    std::cout << V1 << std::endl << "======================\n";
+    MakeSuperTriangle(V1);
+    std::cout << V1 << std::endl;
     return 0;
 }
