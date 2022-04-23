@@ -14,32 +14,32 @@ Matrix pow(const Matrix& a, size_t p) {
 }
 
 Fraction det(const Matrix& a) {
-    if (a.IsEmpty() || a.getWidth() != a.GetHeight()) {
+    if (a.empty() || a.getWidth() != a.height()) {
         throw std::runtime_error("Wrong sizes");
     }
     Matrix b = a;
     makeTriangle(b);
     Fraction res = 1;
-    for (size_t i = 0; i < b.GetHeight(); ++i) {
+    for (size_t i = 0; i < b.height(); ++i) {
         res *= b[i][i];
     }
     return res;
 }
 
 Matrix inverse(const Matrix& a) {
-    if (a.IsEmpty() || a.getWidth() != a.GetHeight()) {
+    if (a.empty() || a.getWidth() != a.height()) {
         throw std::runtime_error("Wrong sizes");
     }
     if (det(a) == 0) {
         throw std::runtime_error("determinant is zero");
     }
-    Matrix e(a.GetHeight(), a.GetHeight());
-    for (size_t i = 0; i < e.GetHeight(); ++i) {
+    Matrix e(a.height(), a.height());
+    for (size_t i = 0; i < e.height(); ++i) {
         e[i][i] = 1;
     }
     ExtendedMatrix b(a, e);
     makeTriangle(b);
-    for (int32_t i = b.GetHeight() - 1; i != -1; --i) {
+    for (int32_t i = b.height() - 1; i != -1; --i) {
         for (size_t j = 0; j < i; ++j) {
             b[j] -= b[i] * b[j][i];
         }
@@ -48,11 +48,11 @@ Matrix inverse(const Matrix& a) {
 }
 
 Poly getCharPoly(const Matrix& a) {
-    if (a.IsEmpty() || a.GetHeight() != a.getWidth()) {
+    if (a.empty() || a.height() != a.getWidth()) {
         throw std::runtime_error("wrong sizes");
     }
-    std::vector<std::vector<Poly>> b(a.GetHeight(), std::vector<Poly>(a.getWidth()));
-    for (size_t i = 0; i < a.GetHeight(); ++i) {
+    std::vector<std::vector<Poly>> b(a.height(), std::vector<Poly>(a.getWidth()));
+    for (size_t i = 0; i < a.height(); ++i) {
         for (size_t j = 0; j < a.getWidth(); ++j) {
             if (i == j) {
                 b[i][j] = {a[i][j], -1};
@@ -85,4 +85,21 @@ Poly getCharPoly(const Matrix& a) {
         det += k;
     } while (nextPermutation(perm.begin(), perm.end()));
     return det;
+}
+
+size_t rank(const Matrix& a) {
+    Matrix b = a;
+    makeTriangle(b);
+    for (size_t i = 0; i < b.height(); ++i) {
+        bool zero = true;
+        for (const auto& j: b[i]) {
+            if (j != 0) {
+                zero = false;
+            }
+        }
+        if (zero) {
+            return i;
+        }
+    }
+    return b.height();
 }

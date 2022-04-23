@@ -28,40 +28,40 @@ const MatrixRow& Matrix::operator[](size_t ind) const {
 }
 
 Matrix Matrix::operator|(const Matrix& other) const {
-    if (GetHeight() != other.GetHeight()) {
+    if (height() != other.height()) {
         throw std::runtime_error("Wrong sizes");
     }
-    Matrix result(GetHeight());
-    for (size_t i = 0; i < GetHeight(); ++i) {
+    Matrix result(height());
+    for (size_t i = 0; i < height(); ++i) {
         result[i] = operator[](i) | other[i];
     }
     return result;
 }
 
 Matrix& Matrix::operator|=(const Matrix& other) {
-    if (GetHeight() != other.GetHeight()) {
+    if (height() != other.height()) {
         throw std::runtime_error("Wrong sizes");
     }
-    for (size_t i = 0; i < GetHeight(); ++i) {
+    for (size_t i = 0; i < height(); ++i) {
         operator[](i) |= other[i];
     }
     return *this;
 }
 
 Matrix Matrix::operator-() const {
-    Matrix result(GetHeight());
-    for (size_t i = 0; i < GetHeight(); ++i) {
+    Matrix result(height());
+    for (size_t i = 0; i < height(); ++i) {
         result[i] = -data_[i];
     }
     return result;
 }
 
 Matrix Matrix::operator+(const Matrix& other) const {
-    if (GetHeight() != other.GetHeight() || getWidth() != other.getWidth()) {
+    if (height() != other.height() || getWidth() != other.getWidth()) {
         throw std::runtime_error("Wrong sizes");
     }
-    Matrix result(GetHeight(), getWidth());
-    for (size_t i = 0; i < GetHeight(); ++i) {
+    Matrix result(height(), getWidth());
+    for (size_t i = 0; i < height(); ++i) {
         for (size_t j = 0; j < getWidth(); ++j) {
             result[i][j] = operator[](i)[j] + other[i][j];
         }
@@ -70,10 +70,10 @@ Matrix Matrix::operator+(const Matrix& other) const {
 }
 
 Matrix Matrix::operator+(const Fraction& other) const {
-    if (GetHeight() != getWidth()) {
+    if (height() != getWidth()) {
         throw std::runtime_error("Not square");
     }
-    Matrix matrix(GetHeight(), getWidth(), other);
+    Matrix matrix(height(), getWidth(), other);
     return operator+(matrix);
 }
 
@@ -86,10 +86,10 @@ Matrix Matrix::operator-(const Fraction& other) const {
 }
 
 Matrix Matrix::operator*(const Matrix& other) const {
-    if (getWidth() != other.GetHeight()) {
+    if (getWidth() != other.height()) {
         throw std::runtime_error("Wrong sizes");
     }
-    size_t height = GetHeight();
+    size_t height = height();
     size_t width = other.getWidth();
     Matrix result(height, width);
     for (size_t i = 0; i < height; ++i) {
@@ -103,8 +103,8 @@ Matrix Matrix::operator*(const Matrix& other) const {
 }
 
 Matrix Matrix::operator*(const Fraction& other) const {
-    Matrix result(GetHeight(), getWidth());
-    for (size_t i = 0; i < GetHeight(); ++i) {
+    Matrix result(height(), getWidth());
+    for (size_t i = 0; i < height(); ++i) {
         for (size_t j = 0; j < getWidth(); ++j) {
             result[i][j] = operator[](i)[j] * other;
         }
@@ -152,7 +152,7 @@ bool Matrix::operator==(const Matrix& other) const {
     return data_ == other.data_;
 }
 
-size_t Matrix::GetHeight() const {
+size_t Matrix::height() const {
     return data_.size();
 }
 
@@ -160,13 +160,13 @@ size_t Matrix::getWidth() const {
     return data_.empty() ? 0 : data_[0].size();
 }
 
-bool Matrix::IsEmpty() const {
+bool Matrix::empty() const {
     return data_.empty();
 }
 
 Matrix Matrix::T() const {
-    Matrix res(getWidth(), GetHeight());
-    for (int i = 0; i < GetHeight(); ++i) {
+    Matrix res(getWidth(), height());
+    for (int i = 0; i < height(); ++i) {
         for (int j = 0; j < getWidth(); ++j) {
             res[j][i] = data_[i][j];
         }
@@ -180,18 +180,18 @@ Matrix Matrix::operator()(const Matrix& v) const {
 }
 
 std::ostream& operator<<(std::ostream& stream, const Matrix& matrix) {
-    if (matrix.IsEmpty()) {
+    if (matrix.empty()) {
         return stream;
     }
-    size_t width = matrix.GetMaxLenOfElement();
-    for (size_t i = 0; i < matrix.GetHeight(); ++i) {
+    size_t width = matrix.maxLenOfElement();
+    for (size_t i = 0; i < matrix.height(); ++i) {
         for (size_t j = 0; j < matrix.getWidth(); ++j) {
             stream << matrix[i][j];
             if (j + 1 < matrix.getWidth()) {
                 stream << "  " << std::setw(width);
             }
         }
-        if (i + 1 < matrix.GetHeight()) {
+        if (i + 1 < matrix.height()) {
             stream << std::endl;
         }
     }
@@ -222,7 +222,7 @@ Matrix Matrix::E(size_t n) {
     return e;
 }
 
-size_t Matrix::GetMaxLenOfElement() const {
+size_t Matrix::maxLenOfElement() const {
     size_t result = 0;
     for (const auto& i : data_) {
         for (const auto& el : i) {

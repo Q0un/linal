@@ -11,7 +11,7 @@ public:
     ExtendedMatrix(const ExtendedMatrix& a) = default;
     ExtendedMatrix(ExtendedMatrix&& a) = default;
 
-    size_t getWidth() const override;
+    size_t width() const override;
     size_t getWholeWidth() const;
 
     Matrix getLeft() const;

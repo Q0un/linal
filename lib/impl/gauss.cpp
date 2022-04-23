@@ -1,7 +1,7 @@
 #include "gauss.h"
 
 void makeTriangle(Matrix& a) {
-    size_t height = a.GetHeight();
+    size_t height = a.height();
     size_t width = a.getWidth();
     size_t col = 0;
     size_t row = 0;
@@ -29,7 +29,7 @@ void makeTriangle(Matrix& a) {
 
 void makeSuperTriangle(Matrix& a) {
     makeTriangle(a);
-    for (size_t i = 0; i < a.GetHeight(); ++i) {
+    for (size_t i = 0; i < a.height(); ++i) {
         int j = 0;
         while (j < a.getWidth() && a[i][j] == 0) {
             ++j;
@@ -48,12 +48,12 @@ std::pair<Matrix, int16_t> solveSOLE(const Matrix &a, const Matrix &b) {
 }
 
 std::pair<Matrix, int16_t> solveSOLE(const ExtendedMatrix& a) {
-    if (a.IsEmpty()) {
+    if (a.empty()) {
         throw std::runtime_error("Wrong sizes");
     }
     ExtendedMatrix triangle = a;
     makeTriangle(triangle);
-    size_t height = triangle.GetHeight();
+    size_t height = triangle.height();
     size_t width = triangle.getWidth();
     std::vector<size_t> not_zero(height);
     for (size_t i = 0; i < height; ++i) {

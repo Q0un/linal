@@ -40,9 +40,9 @@ public:
 
     bool operator==(const Matrix& other) const;
 
-    size_t GetHeight() const;
+    size_t height() const;
     virtual size_t getWidth() const;
-    bool IsEmpty() const;
+    bool empty() const;
 
     Matrix T() const;
 
@@ -60,5 +60,5 @@ public:
 protected:
     std::vector<MatrixRow> data_;
 
-    size_t GetMaxLenOfElement() const;
+    size_t maxLenOfElement() const;
 };

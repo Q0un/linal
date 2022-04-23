@@ -2,7 +2,7 @@
 
 #include <iomanip>
 
-ExtendedMatrix::ExtendedMatrix(const Matrix& a) : Matrix(a | Matrix(a.GetHeight(), 1)), leftWidth_(a.getWidth()) {
+ExtendedMatrix::ExtendedMatrix(const Matrix& a) : Matrix(a | Matrix(a.height(), 1)), leftWidth_(a.getWidth()) {
 }
 
 ExtendedMatrix::ExtendedMatrix(const Matrix& a, const Matrix& b) : Matrix(a | b), leftWidth_(a.getWidth()) {
@@ -17,8 +17,8 @@ size_t ExtendedMatrix::getWholeWidth() const {
 }
 
 Matrix ExtendedMatrix::getLeft() const {
-    Matrix result(GetHeight(), getWidth());
-    for (size_t i = 0; i < GetHeight(); ++i) {
+    Matrix result(height(), getWidth());
+    for (size_t i = 0; i < height(); ++i) {
         for (size_t j = 0; j < getWidth(); ++j) {
             result[i][j] = operator[](i)[j];
         }
@@ -27,8 +27,8 @@ Matrix ExtendedMatrix::getLeft() const {
 }
 
 Matrix ExtendedMatrix::getRight() const {
-    Matrix result(GetHeight(), getWholeWidth() - getWidth());
-    for (size_t i = 0; i < GetHeight(); ++i) {
+    Matrix result(height(), getWholeWidth() - getWidth());
+    for (size_t i = 0; i < height(); ++i) {
         for (size_t j = getWidth(); j < getWholeWidth(); ++j) {
             result[i][j - getWidth()] = operator[](i)[j];
         }
@@ -37,11 +37,11 @@ Matrix ExtendedMatrix::getRight() const {
 }
 
 std::ostream& operator<<(std::ostream& stream, const ExtendedMatrix& matrix) {
-    if (matrix.IsEmpty()) {
+    if (matrix.empty()) {
         return stream;
     }
-    size_t width = matrix.GetMaxLenOfElement();
-    for (size_t i = 0; i < matrix.GetHeight(); ++i) {
+    size_t width = matrix.maxLenOfElement();
+    for (size_t i = 0; i < matrix.height(); ++i) {
         for (size_t j = 0; j < matrix.getWidth(); ++j) {
             stream << matrix[i][j];
             if (j + 1 < matrix.getWidth()) {
@@ -55,7 +55,7 @@ std::ostream& operator<<(std::ostream& stream, const ExtendedMatrix& matrix) {
                 stream << "  ";
             }
         }
-        if (i + 1 < matrix.GetHeight()) {
+        if (i + 1 < matrix.height()) {
             stream << std::endl;
         }
     }

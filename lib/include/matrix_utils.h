@@ -9,3 +9,5 @@ Fraction det(const Matrix& a);
 Matrix inverse(const Matrix& a);
 
 Poly getCharPoly(const Matrix& a);
+
+size_t rank(const Matrix& a);
