@@ -9,7 +9,7 @@ Fraction::Fraction(int64_t n, int64_t m) {
     }
     num_ = n;
     denom_ = m;
-    Normalize();
+    normalize();
 }
 
 Fraction Fraction::operator-() const {
@@ -100,7 +100,7 @@ Fraction& Fraction::operator/=(int64_t other) {
 }
 
 std::ostream& operator<<(std::ostream& stream, const Fraction& fraction) {
-    return stream << fraction.ToString();
+    return stream << fraction.toString();
 }
 
 bool Fraction::operator<(const Fraction& other) const {
@@ -176,7 +176,7 @@ bool operator>=(int64_t a, const Fraction& b) {
     return !(a < b);
 }
 
-Fraction Fraction::GetAbs() const {
+Fraction Fraction::abs() const {
     if (num_ < 0) {
         return operator-();
     } else {
@@ -184,7 +184,7 @@ Fraction Fraction::GetAbs() const {
     }
 }
 
-std::string Fraction::ToString() const {
+std::string Fraction::toString() const {
     std::string result;
     result += std::to_string(num_);
     if (denom_ != 1) {
@@ -193,11 +193,11 @@ std::string Fraction::ToString() const {
     return result;
 }
 
-size_t Fraction::GetLen() const {
-    return ToString().size();
+size_t Fraction::length() const {
+    return toString().size();
 }
 
-void Fraction::Normalize() {
+void Fraction::normalize() {
     if (denom_ < 0) {
         num_ *= -1;
         denom_ *= -1;

@@ -13,8 +13,8 @@ Poly::Poly(std::initializer_list<Fraction> data) : data_(data) {
 }
 
 Poly Poly::operator+(const Poly& other) const {
-    Poly res(std::max(Deg(), other.Deg()));
-    for (size_t i = 0; i <= res.Deg(); ++i) {
+    Poly res(std::max(degree(), other.degree()));
+    for (size_t i = 0; i <= res.degree(); ++i) {
         res[i] = operator[](i) + other[i];
     }
     return res;
@@ -31,9 +31,9 @@ Poly Poly::operator-(const Poly& other) const {
 }
 
 Poly Poly::operator*(const Poly& other) const {
-    Poly res(Deg() + other.Deg());
-    for (size_t i = 0; i <= Deg(); ++i) {
-        for (size_t j = 0; j <= other.Deg(); ++j) {
+    Poly res(degree() + other.degree());
+    for (size_t i = 0; i <= degree(); ++i) {
+        for (size_t j = 0; j <= other.degree(); ++j) {
             res[i + j] += operator[](i) * other[j];
         }
     }
@@ -76,12 +76,12 @@ Poly& Poly::operator*=(const Fraction& val) {
     return operator*=(Poly({val}));
 }
 
-size_t Poly::Deg() const {
+size_t Poly::degree() const {
     return data_.size() - 1;
 }
 
 Fraction Poly::operator[](size_t i) const {
-    if (i > Deg()) {
+    if (i > degree()) {
         return 0;
     } else {
         return data_[i];
@@ -109,10 +109,10 @@ std::vector<Fraction>::const_iterator Poly::end() const {
 }
 
 std::ostream& operator<<(std::ostream& stream, const Poly& poly) {
-    for (size_t i = 0; i <= poly.Deg(); ++i) {
+    for (size_t i = 0; i <= poly.degree(); ++i) {
         stream << poly[i];
         stream << "x^" << i;
-        if (i + 1 <= poly.Deg()) {
+        if (i + 1 <= poly.degree()) {
             stream << " + ";
         }
     }

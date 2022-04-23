@@ -9,7 +9,7 @@ int main() {
                 {5,   -4,  -1, 3},
                 {-16, 11,  2,  -3}};
     Matrix B = A.T();
-    MakeSuperTriangle(B);
+    makeSuperTriangle(B);
     std::cout << B << std::endl << "=======================\n";
     Matrix C(6);
     C[0] = A[0];
@@ -18,11 +18,11 @@ int main() {
     C[3] = A[3];
     C[4] = {-2, 1, 0, 0};
     C[5] = {3, 0, 1, 2};
-    MakeSuperTriangle(C);
+    makeSuperTriangle(C);
     std::cout << C << std::endl << "=======================\n";
 
     B = A;
-    MakeSuperTriangle(B);
+    makeSuperTriangle(B);
     std::cout << B << std::endl << "=======================\n";
     Matrix D(6);
     A = A.T();
@@ -33,7 +33,7 @@ int main() {
     D[4] = {7, 11, 0, 3};
     D[5] = {-1, -2, 3, 0};
     D = D.T();
-    MakeSuperTriangle(D);
+    makeSuperTriangle(D);
     std::cout << D << std::endl;
     return 0;
 }

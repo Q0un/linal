@@ -20,8 +20,8 @@ int main() {
                 {1,  2,  -2, -2},
                 {1,  2,  -1, -3},
                 {-1, -2, 1,  2}};
-    Matrix right = Inverse(a) * d * Inverse(c);
-    right = Inverse(right);
+    Matrix right = inverse(a) * d * inverse(c);
+    right = inverse(right);
     std::cout << right - b << std::endl;
     return 0;
 }

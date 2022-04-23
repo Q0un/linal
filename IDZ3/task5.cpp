@@ -11,8 +11,8 @@ int main() {
     Matrix Y = {{1, 1,  1},
                 {1, -1, -2},
                 {1, 0,  0}};
-    Matrix X1 = Inverse(X);
-    Matrix Y1 = Inverse(Y);
+    Matrix X1 = inverse(X);
+    Matrix Y1 = inverse(Y);
     Matrix B = {{1,  1, -2},
                 {-2, 1, 1},
                 {3,  1, 5}};
@@ -35,9 +35,9 @@ int main() {
                       {5},
                       {1}};
     Matrix A(3);
-    A[0] = SolveSOLE(Aleft, Aright1).first.T()[0];
-    A[1] = SolveSOLE(Aleft, Aright2).first.T()[0];
-    A[2] = SolveSOLE(Aleft, Aright3).first.T()[0];
+    A[0] = solveSOLE(Aleft, Aright1).first.T()[0];
+    A[1] = solveSOLE(Aleft, Aright2).first.T()[0];
+    A[2] = solveSOLE(Aleft, Aright3).first.T()[0];
     std::cout << A << std::endl;
     return 0;
 }

@@ -1,18 +1,18 @@
 #include "gauss.h"
 
-void MakeTriangle(Matrix& a) {
+void makeTriangle(Matrix& a) {
     size_t height = a.GetHeight();
-    size_t width = a.GetWidth();
+    size_t width = a.getWidth();
     size_t col = 0;
     size_t row = 0;
     while (row < height && col < width) {
         size_t new_row = row;
         for (size_t i = row; i < height; ++i) {
-            if (a[i][col].GetAbs() > a[new_row][col].GetAbs()) {
+            if (a[i][col].abs() > a[new_row][col].abs()) {
                 new_row = i;
             }
         }
-        if (a[new_row][col].GetAbs() == 0) {
+        if (a[new_row][col].abs() == 0) {
             ++col;
             continue;
         }
@@ -27,14 +27,14 @@ void MakeTriangle(Matrix& a) {
     }
 }
 
-void MakeSuperTriangle(Matrix& a) {
-    MakeTriangle(a);
+void makeSuperTriangle(Matrix& a) {
+    makeTriangle(a);
     for (size_t i = 0; i < a.GetHeight(); ++i) {
         int j = 0;
-        while (j < a.GetWidth() && a[i][j] == 0) {
+        while (j < a.getWidth() && a[i][j] == 0) {
             ++j;
         }
-        if (j == a.GetWidth()) {
+        if (j == a.getWidth()) {
             break;
         }
         for (int k = i - 1; k >= 0; --k) {
@@ -43,18 +43,18 @@ void MakeSuperTriangle(Matrix& a) {
     }
 }
 
-std::pair<Matrix, int16_t> SolveSOLE(const Matrix &a, const Matrix &b) {
-    return SolveSOLE(ExtendedMatrix(a, b));
+std::pair<Matrix, int16_t> solveSOLE(const Matrix &a, const Matrix &b) {
+    return solveSOLE(ExtendedMatrix(a, b));
 }
 
-std::pair<Matrix, int16_t> SolveSOLE(const ExtendedMatrix& a) {
+std::pair<Matrix, int16_t> solveSOLE(const ExtendedMatrix& a) {
     if (a.IsEmpty()) {
         throw std::runtime_error("Wrong sizes");
     }
     ExtendedMatrix triangle = a;
-    MakeTriangle(triangle);
+    makeTriangle(triangle);
     size_t height = triangle.GetHeight();
-    size_t width = triangle.GetWidth();
+    size_t width = triangle.getWidth();
     std::vector<size_t> not_zero(height);
     for (size_t i = 0; i < height; ++i) {
         size_t j = 0;

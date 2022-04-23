@@ -32,7 +32,7 @@ int main() {
             k *= Fraction(-1);
         }
         det += k;
-    } while (NextPermutation(perm.begin(), perm.end()));
+    } while (nextPermutation(perm.begin(), perm.end()));
     std::cout << det << std::endl;
     return 0;
 }

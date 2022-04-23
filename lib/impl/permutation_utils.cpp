@@ -2,10 +2,10 @@
 
 #include "matrix_utils.h"
 
-Permutation Pow(const Permutation& a, size_t p) {
-    return Permutation(Pow(a.GetMatrix(), p));
+Permutation pow(const Permutation& a, size_t p) {
+    return Permutation(pow(a.matrix(), p));
 }
 
-Permutation Inverse(const Permutation& a) {
-    return Permutation(Inverse(a.GetMatrix()));
+Permutation inverse(const Permutation& a) {
+    return Permutation(inverse(a.matrix()));
 }

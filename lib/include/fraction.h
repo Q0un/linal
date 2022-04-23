@@ -53,13 +53,13 @@ public:
     bool operator>=(int64_t other) const;
     friend bool operator>=(int64_t a, const Fraction& b);
 
-    Fraction GetAbs() const;
-    std::string ToString() const;
-    size_t GetLen() const;
+    Fraction abs() const;
+    std::string toString() const;
+    size_t length() const;
 
 private:
     int64_t num_;
     int64_t denom_;
 
-    void Normalize();
+    void normalize();
 };

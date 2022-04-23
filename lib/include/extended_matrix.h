@@ -11,11 +11,11 @@ public:
     ExtendedMatrix(const ExtendedMatrix& a) = default;
     ExtendedMatrix(ExtendedMatrix&& a) = default;
 
-    size_t GetWidth() const override;
-    size_t GetWholeWidth() const;
+    size_t getWidth() const override;
+    size_t getWholeWidth() const;
 
-    Matrix GetLeft() const;
-    Matrix GetRight() const;
+    Matrix getLeft() const;
+    Matrix getRight() const;
 
     friend std::ostream& operator<<(std::ostream& stream, const ExtendedMatrix& matrix);
 

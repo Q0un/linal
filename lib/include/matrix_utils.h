@@ -2,10 +2,10 @@
 #include "matrix.h"
 #include "poly.h"
 
-Matrix Pow(const Matrix& a, size_t p);
+Matrix pow(const Matrix& a, size_t p);
 
-Fraction Det(const Matrix& a);
+Fraction det(const Matrix& a);
 
-Matrix Inverse(const Matrix& a);
+Matrix inverse(const Matrix& a);
 
-Poly GetCharPoly(const Matrix& a);
+Poly getCharPoly(const Matrix& a);

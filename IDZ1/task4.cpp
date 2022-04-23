@@ -39,7 +39,7 @@ int main() {
 
     ExtendedMatrix ext_a(a);
 
-    MakeTriangle(ext_a);
+    makeTriangle(ext_a);
 
     std::cout << ext_a << std::endl;
     return 0;

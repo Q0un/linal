@@ -13,7 +13,7 @@ public:
     explicit MatrixRow(std::vector<Fraction>&& data);
     MatrixRow(std::initializer_list<Fraction> data);
 
-    size_t GetSize() const;
+    size_t size() const;
 
     Fraction& operator[](size_t ind);
     const Fraction& operator[](size_t ind) const;

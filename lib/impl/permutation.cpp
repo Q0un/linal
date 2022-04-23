@@ -23,7 +23,7 @@ Permutation::Permutation(Matrix matrix) : matrix_(std::move(matrix)) {
 }
 
 size_t Permutation::Size() const {
-    return matrix_.GetWidth();
+    return matrix_.getWidth();
 }
 
 Fraction Permutation::operator[](size_t i) const {
@@ -58,6 +58,6 @@ std::ostream& operator<<(std::ostream& stream, const Permutation& perm) {
     return stream;
 }
 
-const Matrix &Permutation::GetMatrix() const {
+const Matrix &Permutation::matrix() const {
     return matrix_;
 }

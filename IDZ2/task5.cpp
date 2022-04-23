@@ -11,6 +11,6 @@ int main() {
                 {2,  -4}};
     Matrix b = {{1, 3, 2, -3, -1},
                 {3, 1, 2, -1, -3}};
-    std::cout << GetCharPoly(a * b) << std::endl;
+    std::cout << getCharPoly(a * b) << std::endl;
     return 0;
 }

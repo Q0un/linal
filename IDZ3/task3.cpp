@@ -9,9 +9,9 @@ int main() {
                 {2, -2, -9, 6},
                 {0, 0,  4,  -2},
                 {0, 0,  4,  -2}};
-    Matrix X = Pow(A, 4);
+    Matrix X = pow(A, 4);
     std::cout << X << std::endl << "================\n";
-    MakeSuperTriangle(X);
+    makeSuperTriangle(X);
     std::cout << X << std::endl << "================\n";
     Matrix B = {{2, 2,  -1, 1},
                 {1, -1, 0,  1},
@@ -21,8 +21,8 @@ int main() {
                 {9},
                 {6},
                 {6}};
-    Matrix res = SolveSOLE(B, V).first;
-    MakeSuperTriangle(B);
+    Matrix res = solveSOLE(B, V).first;
+    makeSuperTriangle(B);
     std::cout << B << std::endl << "================\n";
     std::cout << res << std::endl;
     return 0;

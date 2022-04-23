@@ -6,7 +6,7 @@
 int main() {
     Matrix a = {{9, -7, 7},
                 {4, -6, 9}};
-    MakeTriangle(a);
+    makeTriangle(a);
     std::cout << a << std::endl << "=========" << std::endl;
     return 0;
 }

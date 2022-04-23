@@ -30,7 +30,7 @@ public:
     Poly& operator-=(const Fraction& val);
     Poly& operator*=(const Fraction& val);
 
-    size_t Deg() const;
+    size_t degree() const;
 
     Fraction& operator[](size_t i);
     Fraction operator[](size_t i) const;

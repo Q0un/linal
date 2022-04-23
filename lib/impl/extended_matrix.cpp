@@ -2,35 +2,35 @@
 
 #include <iomanip>
 
-ExtendedMatrix::ExtendedMatrix(const Matrix& a) : Matrix(a | Matrix(a.GetHeight(), 1)), leftWidth_(a.GetWidth()) {
+ExtendedMatrix::ExtendedMatrix(const Matrix& a) : Matrix(a | Matrix(a.GetHeight(), 1)), leftWidth_(a.getWidth()) {
 }
 
-ExtendedMatrix::ExtendedMatrix(const Matrix& a, const Matrix& b) : Matrix(a | b), leftWidth_(a.GetWidth()) {
+ExtendedMatrix::ExtendedMatrix(const Matrix& a, const Matrix& b) : Matrix(a | b), leftWidth_(a.getWidth()) {
 }
 
-size_t ExtendedMatrix::GetWidth() const {
+size_t ExtendedMatrix::getWidth() const {
     return leftWidth_;
 }
 
-size_t ExtendedMatrix::GetWholeWidth() const {
-    return Matrix::GetWidth();
+size_t ExtendedMatrix::getWholeWidth() const {
+    return Matrix::getWidth();
 }
 
-Matrix ExtendedMatrix::GetLeft() const {
-    Matrix result(GetHeight(), GetWidth());
+Matrix ExtendedMatrix::getLeft() const {
+    Matrix result(GetHeight(), getWidth());
     for (size_t i = 0; i < GetHeight(); ++i) {
-        for (size_t j = 0; j < GetWidth(); ++j) {
+        for (size_t j = 0; j < getWidth(); ++j) {
             result[i][j] = operator[](i)[j];
         }
     }
     return result;
 }
 
-Matrix ExtendedMatrix::GetRight() const {
-    Matrix result(GetHeight(), GetWholeWidth() - GetWidth());
+Matrix ExtendedMatrix::getRight() const {
+    Matrix result(GetHeight(), getWholeWidth() - getWidth());
     for (size_t i = 0; i < GetHeight(); ++i) {
-        for (size_t j = GetWidth(); j < GetWholeWidth(); ++j) {
-            result[i][j - GetWidth()] = operator[](i)[j];
+        for (size_t j = getWidth(); j < getWholeWidth(); ++j) {
+            result[i][j - getWidth()] = operator[](i)[j];
         }
     }
     return result;
@@ -42,16 +42,16 @@ std::ostream& operator<<(std::ostream& stream, const ExtendedMatrix& matrix) {
     }
     size_t width = matrix.GetMaxLenOfElement();
     for (size_t i = 0; i < matrix.GetHeight(); ++i) {
-        for (size_t j = 0; j < matrix.GetWidth(); ++j) {
+        for (size_t j = 0; j < matrix.getWidth(); ++j) {
             stream << matrix[i][j];
-            if (j + 1 < matrix.GetWidth()) {
+            if (j + 1 < matrix.getWidth()) {
                 stream << "  " << std::setw(width);
             }
         }
         stream << ' ' << std::setw(width) << '|' << ' ';
-        for (size_t j = matrix.GetWidth(); j < matrix.GetWholeWidth(); ++j) {
-            stream << std::setw(width) << matrix[i][matrix.GetWidth()];
-            if (j + 1 < matrix.GetWholeWidth()) {
+        for (size_t j = matrix.getWidth(); j < matrix.getWholeWidth(); ++j) {
+            stream << std::setw(width) << matrix[i][matrix.getWidth()];
+            if (j + 1 < matrix.getWholeWidth()) {
                 stream << "  ";
             }
         }

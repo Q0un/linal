@@ -14,7 +14,7 @@ MatrixRow::MatrixRow(std::vector<Fraction>&& data) : data_(std::move(data)) {
 MatrixRow::MatrixRow(std::initializer_list<Fraction> data) : data_(data) {
 }
 
-size_t MatrixRow::GetSize() const {
+size_t MatrixRow::size() const {
     return data_.size();
 }
 
@@ -33,7 +33,7 @@ MatrixRow MatrixRow::operator-() const {
 }
 
 MatrixRow MatrixRow::operator+(const MatrixRow& other) const {
-    if (GetSize() != other.GetSize()) {
+    if (size() != other.size()) {
         throw std::runtime_error("Wrong sizes");
     }
     MatrixRow row;
@@ -68,7 +68,7 @@ MatrixRow MatrixRow::operator/(const Fraction& val) const {
 }
 
 MatrixRow& MatrixRow::operator+=(const MatrixRow& other) {
-    if (GetSize() != other.GetSize()) {
+    if (size() != other.size()) {
         throw std::runtime_error("Wrong sizes");
     }
     std::transform(begin(), end(), other.begin(), begin(), std::plus<>());

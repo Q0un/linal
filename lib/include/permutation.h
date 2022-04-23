@@ -23,7 +23,7 @@ public:
 
     friend std::ostream& operator<<(std::ostream& stream, const Permutation& perm);
 
-    const Matrix& GetMatrix() const;
+    const Matrix& matrix() const;
 
 private:
     Matrix matrix_;
