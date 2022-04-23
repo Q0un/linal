@@ -1,11 +1,9 @@
 #include "poly.h"
 
-#include <algorithm>
-
 Poly::Poly(size_t deg) : data_(deg + 1) {
 }
 
-Poly::Poly(const std::vector<Fraction>& data) : data_(data) {
+Poly::Poly(std::vector<Fraction> data) : data_(data) {
 }
 
 Poly::Poly(std::vector<Fraction>&& data) : data_(data) {

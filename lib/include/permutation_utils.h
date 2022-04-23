@@ -3,15 +3,10 @@
 #include <algorithm>
 
 #include "permutation.h"
-#include "matrix_utils.h"
 
-Permutation Pow(const Permutation& a, size_t p) {
-    return Permutation(Pow(a.GetMatrix(), p));
-}
+Permutation Pow(const Permutation& a, size_t p);
 
-Permutation Inverse(const Permutation& a) {
-    return Permutation(Inverse(a.GetMatrix()));
-}
+Permutation Inverse(const Permutation& a);
 
 template<typename It>
 bool NextPermutation(It begin, It end) {
@@ -26,7 +21,7 @@ bool NextPermutation(It begin, It end) {
         --i;
         if (*i < *j) {
             It k = end;
-            while (!(*i < *--k)) {}
+            while (*i >= *--k) {}
             std::iter_swap(i, k);
             std::reverse(j, end);
             return true;

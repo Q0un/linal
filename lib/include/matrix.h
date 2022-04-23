@@ -8,9 +8,9 @@
 class Matrix {
 public:
     Matrix() = default;
-    Matrix(size_t h, size_t w = 0, Fraction val = 0);
-    Matrix(const std::vector<MatrixRow>& data);
-    Matrix(std::vector<MatrixRow>&& data);
+    explicit Matrix(size_t h, size_t w = 0, Fraction val = Fraction(0));
+    explicit Matrix(std::vector<MatrixRow> data);
+    explicit Matrix(std::vector<MatrixRow>&& data);
     Matrix(std::initializer_list<MatrixRow> data);
 
     MatrixRow& operator[](size_t ind);

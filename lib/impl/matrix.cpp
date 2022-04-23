@@ -1,6 +1,5 @@
 #include "matrix.h"
 
-#include <algorithm>
 #include <iomanip>
 
 Matrix::Matrix(size_t h, size_t w, Fraction val) : data_(h, MatrixRow(w)) {
@@ -11,7 +10,7 @@ Matrix::Matrix(size_t h, size_t w, Fraction val) : data_(h, MatrixRow(w)) {
     }
 }
 
-Matrix::Matrix(const std::vector<MatrixRow>& data) : data_(data) {
+Matrix::Matrix(std::vector<MatrixRow> data) : data_(std::move(data)) {
 }
 
 Matrix::Matrix(std::vector<MatrixRow>&& data) : data_(std::move(data)) {
@@ -218,7 +217,7 @@ std::vector<MatrixRow>::const_iterator Matrix::end() const {
 Matrix Matrix::E(size_t n) {
     Matrix e(n, n);
     for (size_t i = 0; i < n; ++i) {
-        e[i][i] = 1;
+        e[i][i] = Fraction(1);
     }
     return e;
 }

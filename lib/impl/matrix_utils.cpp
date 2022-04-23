@@ -1,7 +1,6 @@
-#pragma once
-#include "matrix.h"
+#include "matrix_utils.h"
+
 #include "gauss.h"
-#include "poly.h"
 #include "permutation_utils.h"
 
 Matrix Pow(const Matrix& a, size_t p) {

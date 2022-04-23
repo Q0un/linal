@@ -8,9 +8,9 @@
 
 class Poly {
 public:
-    Poly(size_t deg = 0);
-    Poly(const std::vector<Fraction>& data);
-    Poly(std::vector<Fraction>&& data);
+    explicit Poly(size_t deg = 0);
+    explicit Poly(std::vector<Fraction> data);
+    explicit Poly(std::vector<Fraction>&& data);
     Poly(std::initializer_list<Fraction> data);
 
     Poly operator+(const Poly& other) const;

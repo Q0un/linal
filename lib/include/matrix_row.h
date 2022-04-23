@@ -8,9 +8,9 @@
 class MatrixRow {
 public:
     MatrixRow() = default;
-    MatrixRow(size_t size);
-    MatrixRow(const std::vector<Fraction>& data);
-    MatrixRow(std::vector<Fraction>&& data);
+    explicit MatrixRow(size_t size);
+    explicit MatrixRow(std::vector<Fraction> data);
+    explicit MatrixRow(std::vector<Fraction>&& data);
     MatrixRow(std::initializer_list<Fraction> data);
 
     size_t GetSize() const;

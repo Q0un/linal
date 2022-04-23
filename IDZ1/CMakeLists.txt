@@ -1,13 +1,27 @@
-add_compile_options(-I${CMAKE_CURRENT_SOURCE_DIR}/../src)
+add_executable(IDZ1_task1)
+target_sources(IDZ1_task1
+    PRIVATE
+        task1.cpp
+)
+target_link_libraries(IDZ1_task1 PRIVATE lib)
 
-file(GLOB SRC CONFIGURE_DEPENDS "../src/*.h" "../src/*.cpp")
+add_executable(IDZ1_task3)
+target_sources(IDZ1_task3
+    PRIVATE
+        task3.cpp
+)
+target_link_libraries(IDZ1_task3 PRIVATE lib)
 
-set(CMAKE_CXX_STANDARD 20)
+add_executable(IDZ1_task4)
+target_sources(IDZ1_task4
+    PRIVATE
+        task4.cpp
+)
+target_link_libraries(IDZ1_task4 PRIVATE lib)
 
-add_executable(IDZ1_task1 task1.cpp ${SRC})
-
-add_executable(IDZ1_task3 task3.cpp ${SRC})
-
-add_executable(IDZ1_task4 task4.cpp ${SRC})
-
-add_executable(IDZ1_task5 task5.cpp ${SRC})
+add_executable(IDZ1_task5)
+target_sources(IDZ1_task5
+    PRIVATE
+        task5.cpp
+)
+target_link_libraries(IDZ1_task5 PRIVATE lib)

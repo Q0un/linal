@@ -1,12 +1,11 @@
 #include "matrix_row.h"
 
 #include <stdexcept>
-#include <algorithm>
 
 MatrixRow::MatrixRow(size_t size) : data_(size) {
 }
 
-MatrixRow::MatrixRow(const std::vector<Fraction>& data) : data_(data) {
+MatrixRow::MatrixRow(std::vector<Fraction> data) : data_(std::move(data)) {
 }
 
 MatrixRow::MatrixRow(std::vector<Fraction>&& data) : data_(std::move(data)) {

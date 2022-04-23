@@ -8,10 +8,10 @@
 
 class Permutation {
 public:
-    Permutation(const std::vector<uint32_t>& data);
-    Permutation(std::vector<uint32_t>&& data);
+    explicit Permutation(const std::vector<uint32_t>& data);
+    explicit Permutation(std::vector<uint32_t>&& data);
     Permutation(std::initializer_list<uint32_t> data);
-    Permutation(Matrix matrix);
+    explicit Permutation(Matrix matrix);
 
     size_t Size() const;
 

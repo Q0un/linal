@@ -13,18 +13,18 @@ Fraction::Fraction(int64_t n, int64_t m) {
 }
 
 Fraction Fraction::operator-() const {
-    return {-num_, denom_};
+    return Fraction(-num_, denom_);
 }
 
 Fraction Fraction::operator+(const Fraction& other) const {
     int64_t g = std::gcd(denom_, other.denom_);
     int64_t num = num_ * (other.denom_ / g) + other.num_ * (denom_ / g);
     int64_t denom = denom_ * other.denom_ / g;
-    return {num, denom};
+    return Fraction(num, denom);
 }
 
 Fraction Fraction::operator+(int64_t other) const {
-    return {num_ + other * denom_, denom_};
+    return Fraction(num_ + other * denom_, denom_);
 }
 
 Fraction operator+(int64_t a, const Fraction& b) {
@@ -44,11 +44,11 @@ Fraction operator-(int64_t a, const Fraction& b) {
 }
 
 Fraction Fraction::operator*(const Fraction& other) const {
-    return {num_ * other.num_, denom_ * other.denom_};
+    return Fraction(num_ * other.num_, denom_ * other.denom_);
 }
 
 Fraction Fraction::operator*(int64_t other) const {
-    return {num_ * other, denom_};
+    return Fraction(num_ * other, denom_);
 }
 
 Fraction operator*(int64_t a, const Fraction& b) {
@@ -56,15 +56,15 @@ Fraction operator*(int64_t a, const Fraction& b) {
 }
 
 Fraction Fraction::operator/(const Fraction& other) const {
-    return {num_ * other.denom_, denom_ * other.num_};
+    return Fraction(num_ * other.denom_, denom_ * other.num_);
 }
 
 Fraction Fraction::operator/(int64_t other) const {
-    return {num_, denom_ * other};
+    return Fraction(num_, denom_ * other);
 }
 
 Fraction operator/(int64_t a, const Fraction& b) {
-    return {a * b.denom_, b.num_};
+    return Fraction(a * b.denom_, b.num_);
 }
 
 Fraction& Fraction::operator+=(const Fraction& other) {

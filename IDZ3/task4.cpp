@@ -1,5 +1,6 @@
 #include <iostream>
 
+#include "gauss.h"
 #include "matrix.h"
 #include "matrix_utils.h"
 #include "poly.h"
