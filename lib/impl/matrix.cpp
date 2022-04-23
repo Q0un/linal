@@ -57,12 +57,12 @@ Matrix Matrix::operator-() const {
 }
 
 Matrix Matrix::operator+(const Matrix& other) const {
-    if (height() != other.height() || getWidth() != other.getWidth()) {
+    if (height() != other.height() || width() != other.width()) {
         throw std::runtime_error("Wrong sizes");
     }
-    Matrix result(height(), getWidth());
+    Matrix result(height(), width());
     for (size_t i = 0; i < height(); ++i) {
-        for (size_t j = 0; j < getWidth(); ++j) {
+        for (size_t j = 0; j < width(); ++j) {
             result[i][j] = operator[](i)[j] + other[i][j];
         }
     }
@@ -70,10 +70,10 @@ Matrix Matrix::operator+(const Matrix& other) const {
 }
 
 Matrix Matrix::operator+(const Fraction& other) const {
-    if (height() != getWidth()) {
+    if (height() != width()) {
         throw std::runtime_error("Not square");
     }
-    Matrix matrix(height(), getWidth(), other);
+    Matrix matrix(height(), width(), other);
     return operator+(matrix);
 }
 
@@ -86,15 +86,15 @@ Matrix Matrix::operator-(const Fraction& other) const {
 }
 
 Matrix Matrix::operator*(const Matrix& other) const {
-    if (getWidth() != other.height()) {
+    if (width() != other.height()) {
         throw std::runtime_error("Wrong sizes");
     }
-    size_t height = height();
-    size_t width = other.getWidth();
-    Matrix result(height, width);
-    for (size_t i = 0; i < height; ++i) {
-        for (size_t j = 0; j < width; ++j) {
-            for (size_t k = 0; k < getWidth(); ++k) {
+    size_t h = height();
+    size_t w = other.width();
+    Matrix result(h, w);
+    for (size_t i = 0; i < h; ++i) {
+        for (size_t j = 0; j < w; ++j) {
+            for (size_t k = 0; k < width(); ++k) {
                 result[i][j] += operator[](i)[k] * other[k][j];
             }
         }
@@ -103,9 +103,9 @@ Matrix Matrix::operator*(const Matrix& other) const {
 }
 
 Matrix Matrix::operator*(const Fraction& other) const {
-    Matrix result(height(), getWidth());
+    Matrix result(height(), width());
     for (size_t i = 0; i < height(); ++i) {
-        for (size_t j = 0; j < getWidth(); ++j) {
+        for (size_t j = 0; j < width(); ++j) {
             result[i][j] = operator[](i)[j] * other;
         }
     }
@@ -156,7 +156,7 @@ size_t Matrix::height() const {
     return data_.size();
 }
 
-size_t Matrix::getWidth() const {
+size_t Matrix::width() const {
     return data_.empty() ? 0 : data_[0].size();
 }
 
@@ -165,9 +165,9 @@ bool Matrix::empty() const {
 }
 
 Matrix Matrix::T() const {
-    Matrix res(getWidth(), height());
+    Matrix res(width(), height());
     for (int i = 0; i < height(); ++i) {
-        for (int j = 0; j < getWidth(); ++j) {
+        for (int j = 0; j < width(); ++j) {
             res[j][i] = data_[i][j];
         }
     }
@@ -185,9 +185,9 @@ std::ostream& operator<<(std::ostream& stream, const Matrix& matrix) {
     }
     size_t width = matrix.maxLenOfElement();
     for (size_t i = 0; i < matrix.height(); ++i) {
-        for (size_t j = 0; j < matrix.getWidth(); ++j) {
+        for (size_t j = 0; j < matrix.width(); ++j) {
             stream << matrix[i][j];
-            if (j + 1 < matrix.getWidth()) {
+            if (j + 1 < matrix.width()) {
                 stream << "  " << std::setw(width);
             }
         }

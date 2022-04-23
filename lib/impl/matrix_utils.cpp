@@ -4,8 +4,11 @@
 #include "permutation_utils.h"
 
 Matrix pow(const Matrix& a, size_t p) {
-    if (p == 1) {
-        return a;
+    if (a.height() != a.width()) {
+        throw std::runtime_error("Not square matrix");
+    }
+    if (p == 0) {
+        return Matrix::E(a.height());
     }
     if (p & 1) {
         return a * pow(a, p - 1);
@@ -14,7 +17,7 @@ Matrix pow(const Matrix& a, size_t p) {
 }
 
 Fraction det(const Matrix& a) {
-    if (a.empty() || a.getWidth() != a.height()) {
+    if (a.empty() || a.width() != a.height()) {
         throw std::runtime_error("Wrong sizes");
     }
     Matrix b = a;
@@ -27,7 +30,7 @@ Fraction det(const Matrix& a) {
 }
 
 Matrix inverse(const Matrix& a) {
-    if (a.empty() || a.getWidth() != a.height()) {
+    if (a.empty() || a.width() != a.height()) {
         throw std::runtime_error("Wrong sizes");
     }
     if (det(a) == 0) {
@@ -48,12 +51,13 @@ Matrix inverse(const Matrix& a) {
 }
 
 Poly getCharPoly(const Matrix& a) {
-    if (a.empty() || a.height() != a.getWidth()) {
-        throw std::runtime_error("wrong sizes");
+    if (a.empty() || a.height() != a.width()) {
+        throw std::runtime_error("Wrong sizes");
     }
-    std::vector<std::vector<Poly>> b(a.height(), std::vector<Poly>(a.getWidth()));
+    std::vector<std::vector<Poly>> b(a.height(),
+                                     std::vector<Poly>(a.width()));
     for (size_t i = 0; i < a.height(); ++i) {
-        for (size_t j = 0; j < a.getWidth(); ++j) {
+        for (size_t j = 0; j < a.width(); ++j) {
             if (i == j) {
                 b[i][j] = {a[i][j], -1};
             } else {
@@ -102,4 +106,30 @@ size_t rank(const Matrix& a) {
         }
     }
     return b.height();
+}
+
+Matrix getJNF(const Matrix& a, const std::vector<std::pair<Fraction,
+        size_t>>& roots) {
+    if (a.height() != a.width()) {
+        throw std::runtime_error("Not square matrix");
+    }
+    Matrix result(a.height(), a.width());
+    size_t last = 0;
+    for (const auto&[root, d]: roots) {
+        for (size_t k = 1; k <= d; ++k) {
+            Matrix b = a - root * Matrix::E(a.height());
+            Matrix c = pow(b, k - 1);
+            size_t cnt = rank(c * b * b) + rank(c) - 2 * rank(c * b);
+            for (size_t i = 0; i < cnt; ++i) {
+                for (size_t j = 0; j < k; ++j) {
+                    result[last][last] = root;
+                    if (j > 0) {
+                        result[last - 1][last] = 1;
+                    }
+                    ++last;
+                }
+            }
+        }
+    }
+    return result;
 }

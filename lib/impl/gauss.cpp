@@ -2,7 +2,7 @@
 
 void makeTriangle(Matrix& a) {
     size_t height = a.height();
-    size_t width = a.getWidth();
+    size_t width = a.width();
     size_t col = 0;
     size_t row = 0;
     while (row < height && col < width) {
@@ -31,10 +31,10 @@ void makeSuperTriangle(Matrix& a) {
     makeTriangle(a);
     for (size_t i = 0; i < a.height(); ++i) {
         int j = 0;
-        while (j < a.getWidth() && a[i][j] == 0) {
+        while (j < a.width() && a[i][j] == 0) {
             ++j;
         }
-        if (j == a.getWidth()) {
+        if (j == a.width()) {
             break;
         }
         for (int k = i - 1; k >= 0; --k) {
@@ -54,7 +54,7 @@ std::pair<Matrix, int16_t> solveSOLE(const ExtendedMatrix& a) {
     ExtendedMatrix triangle = a;
     makeTriangle(triangle);
     size_t height = triangle.height();
-    size_t width = triangle.getWidth();
+    size_t width = triangle.width();
     std::vector<size_t> not_zero(height);
     for (size_t i = 0; i < height; ++i) {
         size_t j = 0;

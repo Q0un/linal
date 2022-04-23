@@ -11,3 +11,6 @@ Matrix inverse(const Matrix& a);
 Poly getCharPoly(const Matrix& a);
 
 size_t rank(const Matrix& a);
+
+Matrix getJNF(const Matrix& a, const std::vector<std::pair<Fraction,
+              size_t>>& roots);

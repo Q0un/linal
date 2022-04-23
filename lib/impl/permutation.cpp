@@ -23,7 +23,7 @@ Permutation::Permutation(Matrix matrix) : matrix_(std::move(matrix)) {
 }
 
 size_t Permutation::Size() const {
-    return matrix_.getWidth();
+    return matrix_.width();
 }
 
 Fraction Permutation::operator[](size_t i) const {

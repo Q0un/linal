@@ -41,7 +41,7 @@ public:
     bool operator==(const Matrix& other) const;
 
     size_t height() const;
-    virtual size_t getWidth() const;
+    virtual size_t width() const;
     bool empty() const;
 
     Matrix T() const;
