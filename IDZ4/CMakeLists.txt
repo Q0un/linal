@@ -14,7 +14,14 @@ target_link_libraries(IDZ4_task2 PRIVATE lib)
 
 add_executable(IDZ4_task3)
 target_sources(IDZ4_task3
-        PRIVATE
+    PRIVATE
         task3.cpp
-        )
+)
 target_link_libraries(IDZ4_task3 PRIVATE lib)
+
+add_executable(IDZ4_task4)
+target_sources(IDZ4_task4
+    PRIVATE
+        task4.cpp
+)
+target_link_libraries(IDZ4_task4 PRIVATE lib)
