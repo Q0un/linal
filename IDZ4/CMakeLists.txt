@@ -25,3 +25,10 @@ target_sources(IDZ4_task4
         task4.cpp
 )
 target_link_libraries(IDZ4_task4 PRIVATE lib)
+
+add_executable(IDZ4_task5)
+target_sources(IDZ4_task5
+    PRIVATE
+        task5.cpp
+)
+target_link_libraries(IDZ4_task5 PRIVATE lib)
