@@ -3,6 +3,7 @@
 #include "gauss.h"
 
 #include <iostream>
+#include <string>
 
 int main() {
     const std::string SEP = "===========================\n";
