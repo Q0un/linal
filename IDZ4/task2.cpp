@@ -2,6 +2,8 @@
 #include "matrix_utils.h"
 #include "gauss.h"
 
+#include <iostream>
+
 int main() {
     const std::string SEP = "===========================\n";
     const Matrix A = {{3,  -3, -1, 0,  0,  0},

@@ -1,6 +1,8 @@
 #include "matrix.h"
 #include "matrix_utils.h"
 
+#include <iostream>
+
 int main() {
     const std::string SEP = "===============================\n";
 
