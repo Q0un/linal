@@ -15,14 +15,20 @@ int main() {
                       {-9, 1,  9,  -4, 3,  4}};
     std::cout << getCharPoly(A) << std::endl;
     std::cout << SEP;
-    std::cout << getJNF(A, {{3, 4}, {4, 2}}) << std::endl;
+    std::cout << getJNF(A, {{3, 4},
+                            {4, 2}}) << std::endl;
     std::cout << SEP << std::endl << SEP;
     const Matrix B = A - 4 * Matrix::E(A.width());
     Matrix C = pow(B, 2);
     makeSuperTriangle(C);
     std::cout << C << std::endl;
     std::cout << SEP;
-    Matrix x = {{2}, {-1}, {1}, {-2}, {1}, {0}};
+    Matrix x = {{2},
+                {-1},
+                {1},
+                {-2},
+                {1},
+                {0}};
     std::cout << B * x << std::endl;
     std::cout << SEP << std::endl << SEP;
     const Matrix D = A - 3 * Matrix::E(A.width());
@@ -30,8 +36,18 @@ int main() {
     makeSuperTriangle(E);
     std::cout << E << std::endl;
     std::cout << SEP;
-    x = {{4}, {-1}, {2}, {0}, {0}, {0}};
-    Matrix y = {{0}, {0}, {0}, {1}, {0}, {0}};
+    x = {{4},
+         {-1},
+         {2},
+         {0},
+         {0},
+         {0}};
+    Matrix y = {{0},
+                {0},
+                {0},
+                {1},
+                {0},
+                {0}};
     std::cout << D * x << std::endl;
     std::cout << SEP;
     std::cout << D * y << std::endl;
