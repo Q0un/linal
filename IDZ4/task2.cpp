@@ -18,6 +18,7 @@ int main() {
     std::cout << getJNF(A, {{3, 4},
                             {4, 2}}) << std::endl;
     std::cout << SEP << std::endl << SEP;
+
     const Matrix B = A - 4 * Matrix::E(A.width());
     Matrix C = pow(B, 2);
     makeSuperTriangle(C);
@@ -31,6 +32,7 @@ int main() {
                 {0}};
     std::cout << B * x << std::endl;
     std::cout << SEP << std::endl << SEP;
+
     const Matrix D = A - 3 * Matrix::E(A.width());
     Matrix E = pow(D, 4);
     makeSuperTriangle(E);
