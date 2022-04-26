@@ -21,8 +21,7 @@ Fraction det(const Matrix& a) {
         throw std::runtime_error("Wrong sizes");
     }
     Matrix b = a;
-    makeTriangle(b);
-    Fraction res = 1;
+    Fraction res = makeTriangle(b);
     for (size_t i = 0; i < b.height(); ++i) {
         res *= b[i][i];
     }

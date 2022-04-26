@@ -1,10 +1,11 @@
 #include "gauss.h"
 
-void makeTriangle(Matrix& a) {
+Fraction makeTriangle(Matrix& a) {
     size_t height = a.height();
     size_t width = a.width();
     size_t col = 0;
     size_t row = 0;
+    Fraction div = 1;
     while (row < height && col < width) {
         size_t new_row = row;
         for (size_t i = row; i < height; ++i) {
@@ -19,12 +20,14 @@ void makeTriangle(Matrix& a) {
         std::swap(a[row], a[new_row]);
         Fraction to_del = a[row][col];
         a[row] /= to_del;
+        div *= to_del;
         for (size_t i = row + 1; i < height; ++i) {
             a[i] -= a[row] * a[i][col];
         }
         ++row;
         ++col;
     }
+    return div;
 }
 
 void makeSuperTriangle(Matrix& a) {
